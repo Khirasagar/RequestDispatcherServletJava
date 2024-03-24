@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/second")
 
@@ -18,7 +19,17 @@ public class SecondServlet extends HttpServlet {
         
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("From GET");
+		Object name = (String)request.getAttribute("name");
+		Object city = (String)request.getAttribute("city");
+		
+		System.out.println(name);//null	
+		System.out.println(city);//null
+		
+		HttpSession session = request.getSession();
+		String sessionName = (String)session.getAttribute("sessionName");
+		String sessionCity = (String)session.getAttribute("sessionCity");
+		System.out.println(sessionName);
+		System.out.println(sessionCity);
 
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,6 +38,12 @@ public class SecondServlet extends HttpServlet {
 		
 		System.out.println(name);
 		System.out.println(city);
+		
+		HttpSession session = request.getSession();
+		String sessionName = (String)session.getAttribute("sessionName");
+		String sessionCity = (String)session.getAttribute("sessionCity");
+		System.out.println(sessionName);
+		System.out.println(sessionCity);
 		
 	}
 
